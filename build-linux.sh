@@ -4,7 +4,7 @@ gclient config http://webrtc.googlecode.com/svn/trunk
 gclient sync --force
 cd trunk
 BUILD_OUT=out/Debug
-#ninja -C $BUILD_OUT -t clean
+ninja -C $BUILD_OUT -t clean
 ninja -C $BUILD_OUT all
 
 PWD=`pwd`
@@ -20,13 +20,13 @@ function copy_thin {
     OBJECTS=`$AR -t $1`
     for OBJECT in $OBJECTS
     do
-	cp $OBJECT .
+	cp $OBJECT $2
     done
 }
 
 for LIB in $LIBS_OUT
 do
-    $AR -x $LIB || copy_thin $LIB
+    $AR -x $LIB || copy_thin $LIB `pwd`
 done
 $AR -q libfattycakes.a *.o
 cd $ROOT
