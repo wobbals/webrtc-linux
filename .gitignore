@@ -1,0 +1,6 @@
+chromium_deps/
+trunk/
+.gclient
+.gclient_entries
+*~
+
